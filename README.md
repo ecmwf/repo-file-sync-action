@@ -1,3 +1,19 @@
+> \[!CAUTION\]
+> This is a fork of [repo-file-sync-action](https://github.com/BetaHuhn/repo-file-sync-action) for preparing contributions by ECMWF before pushing them to the upstream repo. ECMWF aims to synchronise this repo regularly with the upstream repo. Please go to the original repo linked below for further information about repo-file-sync-action.
+>
+> Original repository: https://github.com/BetaHuhn/repo-file-sync-action
+
+## ECMWF modifications
+
+Upstream appears unmaintained (last release v1.21.1, May 2024), so ECMWF uses this fork, e.g. for the anemoi file sync in [ecmwf/reusable-workflows](https://github.com/ecmwf/reusable-workflows). Changes compared to upstream v1.21.1:
+
+- **`exclude` works together with `template`** ([upstream issue #346](https://github.com/BetaHuhn/repo-file-sync-action/issues/346)). When a directory was rendered as a template, excluded files were still copied, because paths relative to `source` were compared against exclude entries that include `source`.
+- **Excluding a folder (`foo/`) also excludes everything nested below it**, in every mode. Before, only direct children of the excluded folder were matched.
+
+When changing `src/`, rebuild and commit `dist/` (`npm ci && npm run build`); the action runs `dist/index.js`.
+
+---
+
 <div align="center">
   
 # Repo File Sync Action
